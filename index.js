@@ -29,7 +29,7 @@ const corsOptions = {
 };
 
 // Middleware setup
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("dev")); // Logging middleware

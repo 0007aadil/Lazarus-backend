@@ -24,8 +24,8 @@ if (!uri) {
 
 // CORS configuration
 const corsOptions = {
-    origin: ['https://lazarus-lac.vercel.app'], // The frontend URL
-    credentials: true,
+    origin: '*', // Allow all origins for testing
+    credentials: true,
 };
 
 // Middleware setup

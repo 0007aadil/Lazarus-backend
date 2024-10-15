@@ -24,7 +24,7 @@ if (!uri) {
 
 // CORS configuration
 const corsOptions = {
-    origin: "https://lazarus-frontend.vercel.app", // The frontend URL
+    origin: "lazarus-lac.vercel.app", // The frontend URL
     credentials: true,
 };
 

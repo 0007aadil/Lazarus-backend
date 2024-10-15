@@ -192,24 +192,15 @@ app.post("/newOrder", async (req, res) => {
 
 
 
-app.get("/allOrders", async (req, res) => { 
+app.get("/allOrders", async (req, res) => {
     try {
         const token = req.cookies.token;
-        console.log("Token from cookies:", token); // Log the token for debugging
-
         if (!token) {
             return res.status(401).json({ message: "Unauthorized: No token provided" });
         }
 
         // Verify the token and get the userId
-        let decoded;
-        try {
-            decoded = jwt.verify(token, process.env.TOKEN_KEY);
-        } catch (verificationError) {
-            console.error("Token verification error:", verificationError);
-            return res.status(401).json({ message: "Unauthorized: Invalid token" });
-        }
-
+        const decoded = jwt.verify(token, process.env.TOKEN_KEY);
         const userId = decoded.id;
 
         if (!userId) {
@@ -218,12 +209,6 @@ app.get("/allOrders", async (req, res) => {
 
         // Fetch orders for the specific user
         const userOrders = await OrdersModel.find({ userId });
-
-        // Respond with user orders or a message if none are found
-        if (userOrders.length === 0) {
-            return res.status(200).json({ message: "No orders found. Consider making a purchase!" });
-        }
-
         res.status(200).json(userOrders);
     } catch (error) {
         console.error("Error fetching orders:", error);

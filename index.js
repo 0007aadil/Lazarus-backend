@@ -198,7 +198,7 @@ app.get("/allOrders", async (req, res) => {
 
 
 // MongoDB connection and starting the server
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri)
     .then(() => {
         app.listen(PORT, () => {
             console.log(`App is working on port ${PORT}!`);
